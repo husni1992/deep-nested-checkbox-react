@@ -1,47 +1,39 @@
 "use client";
 
-import { Category, CheckboxTreeMetadata } from "../services/api.service";
-import { Checkbox } from "./Checkbox";
+import { useAppDispatch } from "../state/hooks";
+import {
+  selectCheckedItems,
+  selectExpandedItems,
+  selectTreeData,
+  setTreeData,
+} from "../state/features/checkBoxSlice";
+import { CheckboxTreeItem } from "./CheckboxTreeItem";
+import { useEffect } from "react";
+import { checkboxTreeCategories } from "../services/api.service";
+import { buildTree } from "../utils";
+import { useSelector } from "react-redux";
 
-type CategoryWithChildren = Category & {
-  children?: Category[];
-};
+export function CheckboxTree() {
+  const dispatch = useAppDispatch();
 
-function arrangeTree(items: CategoryWithChildren[]) {
-  function loop(_items: CategoryWithChildren[]): any {
-    return _items.map((item, index, fullList) => {
-      // if im a child of a parent? then put inside the parent
-      const allMyChildren = fullList.filter((m) => m.parent === item.id);
+  const treeData = useSelector(selectTreeData);
+  const checkedItems = useSelector(selectCheckedItems);
+  const expandedItems = useSelector(selectExpandedItems);
 
-      if (allMyChildren.length) {
-        item.children = [...allMyChildren];
-        // loop(allMyChildren);
-      }
+  useEffect(() => {
+    const res = buildTree(checkboxTreeCategories);
+    dispatch(setTreeData(res));
+  }, []);
 
-      return item;
-
-      //   allMyChildren.children.push({ ...item });
-      //   fullList.splice(index, 1);
-
-      //   if (allMyChildren.children.length > 1) {
-      //     return loop(allMyChildren.children);
-      //   }
-    });
-  }
-
-  return loop(items);
-}
-
-export function CheckboxTree({ data }: { data: CheckboxTreeMetadata }) {
-  const final = arrangeTree(data.categories);
-  debugger;
-  //   console.log("rearranged", final);
+  console.log(!!treeData, !!checkedItems, !!expandedItems);
 
   return (
-    <div>
-      {data.categories.map((item) => (
-        <Checkbox key={item.id} data={item} />
-      ))}
+    <div style={{ margin: 20 }}>
+      <CheckboxTreeItem
+        treeData={treeData}
+        checkedItems={checkedItems}
+        expandedItems={expandedItems}
+      />
     </div>
   );
 }

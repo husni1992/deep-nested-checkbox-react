@@ -1,12 +1,33 @@
 "use client";
 
-import { Category } from "../services/api.service";
+import { Category } from "../types";
 
-export function Checkbox({ data }: { data: Category }) {
+type Props = {
+  data: Category;
+  checkedItems: Record<keyof Category, any>;
+  expandedItems: Record<keyof Category, any>;
+};
+
+export function Checkbox({ data, checkedItems, expandedItems }: Props) {
+  // const dispatch = useAppDispatch();
+
+  function isChecked(): boolean {
+    return !!checkedItems[data.id as keyof Category];
+  }
+
+  // console.log(treeData, x, y);
+
   return (
-    <div>
-      <input type="checkbox" id={data.id} name={data.name} value={Math.random()} />
-      <label htmlFor={data.id}>{data.name}</label>
-    </div>
+    <>
+      <input
+        type="checkbox"
+        checked={isChecked()}
+        id={data.id}
+        value={data.id}
+        onChange={() => {}}
+        style={{ marginRight: 5 }}
+      />
+      <label>{data.name}</label>
+    </>
   );
 }
