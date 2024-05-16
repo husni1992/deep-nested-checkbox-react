@@ -22,6 +22,10 @@
   cursor: pointer;
 }
 
+.checkbox__checkmark.invalid {
+  cursor: unset;
+}
+
 .checkbox input:checked ~ .checkbox__checkmark {
   background-color: #fff;
 }
@@ -30,7 +34,7 @@
   opacity: 1;
 }
 
-.checkbox__checkmark:hover {
+.checkbox__checkmark:hover:not(.invalid) {
   background-color: #eee;
 }
 
@@ -52,11 +56,15 @@
   transition: opacity 0.1s ease;
 }
 
-.checkbox__body {
+.checkbox__label {
   color: #333;
   line-height: 1.8;
   font-size: 16px;
   margin-left: 10px;
+}
+
+.invalid {
+  color: rgba(0, 0, 0, 0.26);
 }
 
 .clickable {

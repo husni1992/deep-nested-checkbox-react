@@ -1,14 +1,11 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { buildTree } from "./utils";
-import { checkboxTreeCategories } from "./services/api.service";
-import { CheckboxTreeV2 } from "./components/CheckboxTreeV2";
+import { fetchCheckboxTreeCategories } from "./services/api.service";
+import { CheckboxTree } from "./components/CheckboxTree";
 import { Category } from "./types";
-import "./page.css";
 import { SelectedCategories } from "./components/SelectedCategories";
-import classNames from "classnames";
-
-const initialCategories = buildTree(checkboxTreeCategories);
+import "./page.css";
 
 function updateCategory(category: Category, isChecked: boolean): Category {
   return {
@@ -24,10 +21,10 @@ function updateCategories(
   categories: Category[],
   id: string,
   isChecked: boolean,
-  isSelectAll = false,
+  applyToAllItems = false,
 ): Category[] {
   return categories.map((category) => {
-    if (category.id === id || isSelectAll) {
+    if (category.id === id || applyToAllItems) {
       return updateCategory(category, isChecked);
     } else if (category.children.length > 0) {
       return {
@@ -67,30 +64,41 @@ function getSelectedCount(categories: Category[]): number {
 }
 
 export default function Home() {
-  const [categories, setCategories] = useState<Category[]>(
-    initialCategories.categories,
-  );
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [totalItemCount, setTotalItemCount] = useState(0);
 
-  const isAllSelected = useMemo(
-    () => getSelectedCount(categories) === initialCategories.totalCount,
+  const selectedCount = useMemo(
+    () => getSelectedCount(categories),
     [categories],
   );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const rawCategories = await fetchCheckboxTreeCategories();
+      const { categories, totalCount } = buildTree(rawCategories);
+
+      setCategories(categories);
+      setTotalItemCount(totalCount);
+    };
+
+    fetchData();
+  }, []);
 
   const selectedCategories = useMemo(
     () => getSelectedCategories(categories),
     [categories],
   );
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleSelectionChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { id, checked } = event.target;
     setCategories((prevCategories) =>
       updateCategories(prevCategories, id, checked),
     );
   }
 
-  function handleSelectAll(isSelectAll: boolean) {
+  function handleSelectAll(applyToAllItems: boolean) {
     setCategories((prevCategories) =>
-      updateCategories(prevCategories, "", isSelectAll, true),
+      updateCategories(prevCategories, "", applyToAllItems, true),
     );
   }
 
@@ -99,17 +107,22 @@ export default function Home() {
       <div className="checkbox-tree-container">
         <div className="button-container">
           <button
-            className={classNames({
-              "select-all-btn": !isAllSelected,
-              "clear-all-btn": isAllSelected,
-            })}
-            onClick={() => handleSelectAll(!isAllSelected)}
+            className="select-all-btn"
+            onClick={() => handleSelectAll(true)}
+            disabled={selectedCount === totalItemCount}
           >
-            {isAllSelected ? "Clear All" : "Select All"}
+            Select All
+          </button>
+          <button
+            className="clear-all-btn"
+            onClick={() => handleSelectAll(false)}
+            disabled={selectedCount === 0}
+          >
+            Clear All
           </button>
         </div>
 
-        <CheckboxTreeV2 data={categories} onChange={handleChange} />
+        <CheckboxTree data={categories} onChange={handleSelectionChange} />
       </div>
 
       <>

@@ -4,4 +4,5 @@ export interface Category {
   name: string;
   children: Category[];
   isChecked: boolean;
+  isInvalid: boolean;
 }

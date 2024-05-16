@@ -13,8 +13,9 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   onChange,
   onLabelClick,
 }) => {
-  const checkboxBodyClassnames = classNames("checkbox__body", {
+  const checkboxLabelClassnames = classNames("checkbox__label", {
     clickable: item.children.length > 0,
+    invalid: item.isInvalid,
   });
 
   return (
@@ -22,11 +23,17 @@ export const Checkbox: React.FC<CheckboxProps> = ({
       <input
         type="checkbox"
         id={item.id}
-        checked={item.isChecked || false}
+        checked={item.isChecked}
         onChange={onChange}
+        disabled={item.isInvalid}
       />
-      <label htmlFor={item.id} className="checkbox__checkmark"></label>
-      <span className={checkboxBodyClassnames} onClick={onLabelClick}>
+      <label
+        htmlFor={item.id}
+        className={classNames("checkbox__checkmark", {
+          invalid: item.isInvalid,
+        })}
+      ></label>
+      <span className={checkboxLabelClassnames} onClick={onLabelClick}>
         {item.name}
       </span>
     </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Category } from "../types";
 import { Checkbox } from "./Checkbox";
 import "./CheckboxTree.css";
+import classNames from "classnames";
 
 interface TreeNodeProps {
   item: Category;
@@ -25,12 +26,17 @@ const TreeNode: React.FC<TreeNodeProps> = ({ item, onChange }) => {
             onClick={handleToggle}
           ></span>
         )}
-
-        <Checkbox item={item} onChange={onChange} onLabelClick={handleToggle} />
+        <div className={classNames({ "invalid-node": item.isInvalid })}>
+          <Checkbox
+            item={item}
+            onChange={onChange}
+            onLabelClick={handleToggle}
+          />
+        </div>
       </div>
       {hasChildren && isOpen && (
         <div className="tree-node-children no-children">
-          <CheckboxTreeV2 data={item.children} onChange={onChange} />
+          <CheckboxTree data={item.children} onChange={onChange} />
         </div>
       )}
     </div>
@@ -42,7 +48,7 @@ interface CheckboxTreeProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const CheckboxTreeV2 = ({ data, onChange }: CheckboxTreeProps) => {
+export const CheckboxTree = ({ data, onChange }: CheckboxTreeProps) => {
   return (
     <div className="checkbox-tree">
       {data.map((item) => (

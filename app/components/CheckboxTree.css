@@ -36,3 +36,7 @@
 .arrow.open {
   transform: rotate(90deg);
 }
+
+.invalid-node {
+  margin-left: 15px;
+}
