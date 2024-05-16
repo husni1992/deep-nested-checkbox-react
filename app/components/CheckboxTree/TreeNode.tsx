@@ -14,7 +14,7 @@ export const TreeNode: React.FC<TreeNodeProps> = ({ item, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const hasChildren = item.children.length > 0;
 
-  const handleToggle = () => {
+  const setExpandedState = () => {
     setIsOpen(!isOpen);
   };
 
@@ -24,26 +24,26 @@ export const TreeNode: React.FC<TreeNodeProps> = ({ item, onChange }) => {
         {hasChildren && (
           <span
             className={classNames(styles.arrow, { [styles.arrowOpen]: isOpen })}
-            onClick={handleToggle}
+            onClick={setExpandedState}
           />
         )}
 
         <div
-          className={classNames({
-            [styles.endNode]: !hasChildren,
-            [styles.invalidNode]: item.isInvalid,
+          className={classNames("test", {
+            [styles.endNode]: !hasChildren || item.isInvalid,
           })}
         >
           <Checkbox
             item={item}
             onChange={onChange}
-            onLabelClick={handleToggle}
+            onLabelClick={setExpandedState}
           />
         </div>
       </div>
+
       {hasChildren && isOpen && (
         <div
-          className={classNames(styles.treeNodeChildren, {
+          className={classNames(styles.children, {
             [styles.noChildren]: !hasChildren,
           })}
         >

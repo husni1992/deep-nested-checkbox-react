@@ -5,7 +5,7 @@ import { CheckboxTree } from "../components/CheckboxTree/CheckboxTree";
 import { SelectedCategories } from "../components/SelectedCategories/SelectedCategories";
 import {
   updateCategories,
-  getSelectedCategories,
+  getSelectedCategoryNames,
   getCheckedNodeCount,
 } from "../utils/handleCategorySelections";
 import { Category } from "../types";
@@ -14,25 +14,26 @@ import { buildCheckboxTree } from "../utils/buildCheckboxTree";
 import styles from "./CheckboxPage.module.css";
 
 export default function CheckboxTreePage() {
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [treeState, setTreeState] = useState<Category[]>([]);
   const [totalItemCount, setTotalItemCount] = useState(0);
 
   const selectedCount = useMemo(
-    () => getCheckedNodeCount(categories),
-    [categories],
+    () => getCheckedNodeCount(treeState),
+    [treeState],
   );
+
   const selectedCategories = useMemo(
-    () => getSelectedCategories(categories),
-    [categories],
+    () => getSelectedCategoryNames(treeState),
+    [treeState],
   );
 
   useEffect(() => {
     const fetchData = async () => {
       const rawCategories = await fetchCheckboxTreeCategories();
-      const { categories, totalCount } = buildCheckboxTree(rawCategories);
+      const { categories, totalNodeCount } = buildCheckboxTree(rawCategories);
 
-      setCategories(categories);
-      setTotalItemCount(totalCount);
+      setTreeState(categories);
+      setTotalItemCount(totalNodeCount);
     };
 
     fetchData();
@@ -40,13 +41,14 @@ export default function CheckboxTreePage() {
 
   function handleSelectionChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { id, checked } = event.target;
-    setCategories((prevCategories) =>
+
+    setTreeState((prevCategories) =>
       updateCategories(prevCategories, id, checked),
     );
   }
 
   function handleSelectAll(applyToAllItems: boolean) {
-    setCategories((prevCategories) =>
+    setTreeState((prevCategories) =>
       updateCategories(prevCategories, "", applyToAllItems, true),
     );
   }
@@ -59,8 +61,9 @@ export default function CheckboxTreePage() {
           selectedCount={selectedCount}
           totalItemCount={totalItemCount}
         />
-        <CheckboxTree data={categories} onChange={handleSelectionChange} />
+        <CheckboxTree data={treeState} onChange={handleSelectionChange} />
       </div>
+
       {selectedCategories.length > 0 && (
         <div className={styles.selectedCategoriesContainer}>
           <SelectedCategories selectedCategories={selectedCategories} />

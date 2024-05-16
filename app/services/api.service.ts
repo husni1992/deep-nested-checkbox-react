@@ -1,5 +1,5 @@
 import { Category } from "../types";
-import MockResponse from "./mock-data.json";
+import MockResponse from "../mocks/mock-data.json";
 
 export const fetchCheckboxTreeCategories = (): Promise<Category[]> => {
   return new Promise((resolve) => {
