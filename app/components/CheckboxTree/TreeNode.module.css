@@ -1,23 +1,25 @@
-.checkbox-tree {
-  font-family: Arial, sans-serif;
-}
-
-.tree-node {
-  margin-bottom: 5px;
-}
-
-.tree-node-header {
+.treeNodeHeader {
   display: flex;
   align-items: center;
+  margin-bottom: 3px;
 }
 
-.tree-node-children {
+.treeNodeChildren {
   margin-left: 30px;
-  margin-top: 5px;
+  margin-bottom: 3px;
+  margin-top: 3px;
 }
 
-.no-children {
+.noChildren {
   margin-left: 45px;
+}
+
+.endNode {
+  margin-left: 15px;
+}
+
+.invalidNode {
+  margin-left: 15px;
 }
 
 .arrow {
@@ -33,10 +35,6 @@
   cursor: pointer;
 }
 
-.arrow.open {
+.arrowOpen {
   transform: rotate(90deg);
-}
-
-.invalid-node {
-  margin-left: 15px;
 }

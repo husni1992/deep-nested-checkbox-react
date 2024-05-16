@@ -1,15 +1,15 @@
-h3 {
+.header {
   margin-top: 0;
 }
 
-.category-grid {
+.categoryGrid {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   max-height: 150px;
 }
 
-.category-item {
+.categoryItem {
   padding: 5px 10px;
   border: 1px solid #ccc;
   border-radius: 4px;

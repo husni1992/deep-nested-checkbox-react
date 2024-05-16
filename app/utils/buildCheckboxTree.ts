@@ -1,7 +1,7 @@
-import { ALLOW_INVALID_ITEMS } from "./config";
-import { Category } from "./types";
+import { ALLOW_INVALID_ITEMS } from "../config";
+import { Category } from "../types";
 
-export function buildTree(categories: Category[]): {
+export function buildCheckboxTree(categories: Category[]): {
   totalCount: number;
   categories: Category[];
 } {
@@ -26,8 +26,7 @@ export function buildTree(categories: Category[]): {
 
   function isRootCategory(category: Category): boolean {
     return (
-      category.parent === "0" ||
-      (ALLOW_INVALID_ITEMS && !tree[category.parent])
+      category.parent === "0" || (ALLOW_INVALID_ITEMS && !tree[category.parent])
     );
   }
 

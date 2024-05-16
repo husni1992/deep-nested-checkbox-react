@@ -1,6 +1,7 @@
+import React from "react";
 import classNames from "classnames";
-import { Category } from "../types";
-import "./Checkbox.css";
+import { Category } from "../../types";
+import styles from "./Checkbox.module.css";
 
 interface CheckboxProps {
   item: Category;
@@ -13,26 +14,28 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   onChange,
   onLabelClick,
 }) => {
-  const checkboxLabelClassnames = classNames("checkbox__label", {
-    clickable: item.children.length > 0,
-    invalid: item.isInvalid,
+  const checkboxLabelClassnames = classNames(styles.checkboxLabel, {
+    [styles.clickable]: item.children.length > 0,
+    [styles.invalid]: item.isInvalid,
   });
 
   return (
-    <div className="checkbox">
+    <div className={styles.checkbox}>
       <input
         type="checkbox"
         id={item.id}
-        checked={item.isChecked}
+        checked={item.isChecked && !item.isInvalid}
         onChange={onChange}
         disabled={item.isInvalid}
       />
+
       <label
         htmlFor={item.id}
-        className={classNames("checkbox__checkmark", {
-          invalid: item.isInvalid,
+        className={classNames(styles.checkboxCheckmark, {
+          [styles.invalid]: item.isInvalid,
         })}
       ></label>
+
       <span className={checkboxLabelClassnames} onClick={onLabelClick}>
         {item.name}
       </span>

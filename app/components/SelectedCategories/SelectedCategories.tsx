@@ -1,15 +1,15 @@
 import React from "react";
-import "./styles.css";
+import styles from "./SelectedCategories.module.css";
 
 export const SelectedCategories: React.FC<{
   selectedCategories: string[];
 }> = ({ selectedCategories }) => {
   return (
     <>
-      <h3>Selected Categories:</h3>
-      <div className="category-grid">
+      <h3 className={styles.header}>Selected Categories:</h3>
+      <div className={styles.categoryGrid}>
         {selectedCategories.map((category) => (
-          <span key={category} className="category-item">
+          <span key={category} className={styles.categoryItem}>
             {category}
           </span>
         ))}

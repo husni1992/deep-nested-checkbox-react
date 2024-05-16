@@ -1,21 +1,25 @@
-export const result = [
+export const processedTree = [
   {
     id: "14100",
+    isChecked: false,
     parent: "0",
     name: "Dames",
     children: [
       {
         id: "14096",
+        isChecked: false,
         parent: "14100",
         name: "Kleding",
         children: [
           {
             id: "14098",
+            isChecked: false,
             parent: "14096",
             name: "Badmode",
             children: [
               {
                 id: "17091",
+                isChecked: false,
                 parent: "14098",
                 name: "Overige Badmode",
                 children: [],
@@ -24,35 +28,41 @@ export const result = [
           },
           {
             id: "14101",
+            isChecked: false,
             parent: "14096",
             name: "Broeken",
             children: [
               {
                 id: "14230",
+                isChecked: false,
                 parent: "14101",
                 name: "Leggings",
                 children: [],
               },
               {
                 id: "14234",
+                isChecked: false,
                 parent: "14101",
                 name: "Shorts",
                 children: [],
               },
               {
                 id: "14237",
+                isChecked: false,
                 parent: "14101",
                 name: "Jumpsuits en Playsuits",
                 children: [],
               },
               {
                 id: "14239",
+                isChecked: false,
                 parent: "14101",
                 name: "Pantalons",
                 children: [],
               },
               {
                 id: "16968",
+                isChecked: false,
                 parent: "14101",
                 name: "Overige broeken",
                 children: [],
@@ -61,29 +71,34 @@ export const result = [
           },
           {
             id: "14104",
+            isChecked: false,
             parent: "14096",
             name: "Jassen en Mantels",
             children: [
               {
                 id: "17002",
+                isChecked: false,
                 parent: "14104",
                 name: "Spijkerjassen",
                 children: [],
               },
               {
                 id: "17012",
+                isChecked: false,
                 parent: "14104",
                 name: "Winterjassen",
                 children: [],
               },
               {
                 id: "17016",
+                isChecked: false,
                 parent: "14104",
                 name: "Overige Jassen en Mantels",
                 children: [],
               },
               {
                 id: "21459",
+                isChecked: false,
                 parent: "14104",
                 name: "Bomberjassen",
                 children: [],
@@ -92,53 +107,62 @@ export const result = [
           },
           {
             id: "14105",
+            isChecked: false,
             parent: "14096",
             name: "Jurken",
             children: [
               {
                 id: "14224",
+                isChecked: false,
                 parent: "14105",
                 name: "Casual jurken",
                 children: [],
               },
               {
                 id: "14228",
+                isChecked: false,
                 parent: "14105",
                 name: "Maxi jurken",
                 children: [],
               },
               {
                 id: "14232",
+                isChecked: false,
                 parent: "14105",
                 name: "Mouwloze jurken",
                 children: [],
               },
               {
                 id: "14236",
+                isChecked: false,
                 parent: "14105",
                 name: "Jurken lange mouw",
                 children: [],
               },
               {
                 id: "14240",
+                isChecked: false,
                 parent: "14105",
                 name: "Jurken korte mouw",
                 children: [],
               },
               {
                 id: "16909",
+                isChecked: false,
                 parent: "14105",
                 name: "Cocktail jurken",
                 children: [],
               },
               {
                 id: "16915",
+                isChecked: false,
                 parent: "14105",
                 name: "Blousejurken",
                 children: [],
               },
               {
                 id: "16919",
+                isChecked: false,
                 parent: "14105",
                 name: "Overige jurken",
                 children: [],
@@ -147,16 +171,19 @@ export const result = [
           },
           {
             id: "14106",
+            isChecked: false,
             parent: "14096",
             name: "Lingerie en nachtmode",
             children: [
               {
                 id: "17131",
+                isChecked: false,
                 parent: "14106",
                 name: "BH's",
                 children: [
                   {
                     id: "21585",
+                    isChecked: false,
                     parent: "17131",
                     name: "Voorgevormde BH's",
                     children: [],
@@ -165,11 +192,13 @@ export const result = [
               },
               {
                 id: "17137",
+                isChecked: false,
                 parent: "14106",
                 name: "Slipjes",
                 children: [
                   {
                     id: "21601",
+                    isChecked: false,
                     parent: "17137",
                     name: "Slips",
                     children: [],
@@ -178,6 +207,7 @@ export const result = [
               },
               {
                 id: "21609",
+                isChecked: false,
                 parent: "14106",
                 name: "Hipsters",
                 children: [],
@@ -186,23 +216,27 @@ export const result = [
           },
           {
             id: "14107",
+            isChecked: false,
             parent: "14096",
             name: "Shirts en Tops",
             children: [
               {
                 id: "14216",
+                isChecked: false,
                 parent: "14107",
                 name: "Tops",
                 children: [],
               },
               {
                 id: "14220",
+                isChecked: false,
                 parent: "14107",
                 name: "Longsleeves",
                 children: [],
               },
               {
                 id: "14221",
+                isChecked: false,
                 parent: "14107",
                 name: "T-shirts",
                 children: [],
@@ -211,17 +245,20 @@ export const result = [
           },
           {
             id: "14108",
+            isChecked: false,
             parent: "14096",
             name: "Truien en Vesten",
             children: [
               {
                 id: "14217",
+                isChecked: false,
                 parent: "14108",
                 name: "Sweaters",
                 children: [],
               },
               {
                 id: "21408",
+                isChecked: false,
                 parent: "14108",
                 name: "Cardigans",
                 children: [],
@@ -230,35 +267,41 @@ export const result = [
           },
           {
             id: "14212",
+            isChecked: false,
             parent: "14096",
             name: "Jeans",
             children: [
               {
                 id: "14213",
+                isChecked: false,
                 parent: "14212",
                 name: "Straight",
                 children: [],
               },
               {
                 id: "14214",
+                isChecked: false,
                 parent: "14212",
                 name: "Skinny",
                 children: [],
               },
               {
                 id: "14215",
+                isChecked: false,
                 parent: "14212",
                 name: "Slim",
                 children: [],
               },
               {
                 id: "16861",
+                isChecked: false,
                 parent: "14212",
                 name: "Bootcut",
                 children: [],
               },
               {
                 id: "16877",
+                isChecked: false,
                 parent: "14212",
                 name: "Relaxed",
                 children: [],
@@ -267,41 +310,48 @@ export const result = [
           },
           {
             id: "14226",
+            isChecked: false,
             parent: "14096",
             name: "Joggingbroeken",
             children: [],
           },
           {
             id: "16891",
+            isChecked: false,
             parent: "14096",
             name: "Rokken",
             children: [
               {
                 id: "14231",
+                isChecked: false,
                 parent: "16891",
                 name: "Mini Rokken",
                 children: [],
               },
               {
                 id: "16976",
+                isChecked: false,
                 parent: "16891",
                 name: "Kokerrok",
                 children: [],
               },
               {
                 id: "17290",
+                isChecked: false,
                 parent: "16891",
                 name: "Overige Rokken",
                 children: [],
               },
               {
                 id: "21410",
+                isChecked: false,
                 parent: "16891",
                 name: "Korte Rok",
                 children: [],
               },
               {
                 id: "21464",
+                isChecked: false,
                 parent: "16891",
                 name: "Lange Rok",
                 children: [],
@@ -310,17 +360,20 @@ export const result = [
           },
           {
             id: "16935",
+            isChecked: false,
             parent: "14096",
             name: "Blouses",
             children: [
               {
                 id: "14223",
+                isChecked: false,
                 parent: "16935",
                 name: "Blouses",
                 children: [],
               },
               {
                 id: "16948",
+                isChecked: false,
                 parent: "16935",
                 name: "Overige blouses",
                 children: [],
@@ -329,12 +382,14 @@ export const result = [
           },
           {
             id: "16942",
+            isChecked: false,
             parent: "14096",
             name: "Overhemden",
             children: [],
           },
           {
             id: "17071",
+            isChecked: false,
             parent: "14096",
             name: "Badpakken",
             children: [],
@@ -343,17 +398,20 @@ export const result = [
       },
       {
         id: "14114",
+        isChecked: false,
         parent: "14100",
         name: "Accessoires",
         children: [
           {
             id: "14219",
+            isChecked: false,
             parent: "14114",
             name: "Riemen",
             children: [],
           },
           {
             id: "17241",
+            isChecked: false,
             parent: "14114",
             name: "Mutsen en Hoeden",
             children: [],
@@ -362,11 +420,13 @@ export const result = [
       },
       {
         id: "14559",
+        isChecked: false,
         parent: "14100",
         name: "Sport",
         children: [
           {
             id: "17106",
+            isChecked: false,
             parent: "14559",
             name: "Broeken",
             children: [],
@@ -377,17 +437,20 @@ export const result = [
   },
   {
     id: "21251",
+    isChecked: false,
     parent: "0",
     name: "Heren",
     children: [
       {
         id: "21253",
+        isChecked: false,
         parent: "21251",
         name: "T-shirts",
         children: [],
       },
       {
         id: "21249",
+        isChecked: false,
         parent: "21251",
         name: "Shoes",
         children: [],
@@ -396,52 +459,61 @@ export const result = [
   },
   {
     id: "21252",
+    isChecked: false,
     parent: "14449",
     name: "Shirts",
     children: [],
   },
   {
     id: "14126",
+    isChecked: false,
     parent: "0",
     name: "Kids",
     children: [
       {
         id: "14665",
+        isChecked: false,
         parent: "14126",
         name: "Boys",
         children: [
           {
             id: "21250",
+            isChecked: false,
             parent: "14665",
             name: "Jassen",
             children: [],
           },
           {
             id: "21258",
+            isChecked: false,
             parent: "14665",
             name: "T-shirts",
             children: [],
           },
           {
             id: "21260",
+            isChecked: false,
             parent: "14665",
             name: "Broeken",
             children: [],
           },
           {
             id: "21268",
+            isChecked: false,
             parent: "14665",
             name: "Sportkleding",
             children: [],
           },
           {
             id: "21274",
+            isChecked: false,
             parent: "14665",
             name: "Zwemkleding",
             children: [],
           },
           {
             id: "21276",
+            isChecked: false,
             parent: "14665",
             name: "Overige",
             children: [],
@@ -450,77 +522,90 @@ export const result = [
       },
       {
         id: "14666",
+        isChecked: false,
         parent: "14126",
         name: "Girls",
         children: [
           {
             id: "21284",
+            isChecked: false,
             parent: "14666",
             name: "Spijkerbroeken",
             children: [],
           },
           {
             id: "21290",
+            isChecked: false,
             parent: "14666",
             name: "Shirts",
             children: [],
           },
           {
             id: "21292",
+            isChecked: false,
             parent: "14666",
             name: "T-shirts",
             children: [],
           },
           {
             id: "21298",
+            isChecked: false,
             parent: "14666",
             name: "Broeken",
             children: [],
           },
           {
             id: "21306",
+            isChecked: false,
             parent: "14666",
             name: "Sportkleding",
             children: [],
           },
           {
             id: "21308",
+            isChecked: false,
             parent: "14666",
             name: "Zwemkleding",
             children: [],
           },
           {
             id: "21316",
+            isChecked: false,
             parent: "14666",
             name: "Overige",
             children: [],
           },
           {
             id: "21320",
+            isChecked: false,
             parent: "14666",
             name: "Baby rompers",
             children: [],
           },
           {
             id: "21326",
+            isChecked: false,
             parent: "14666",
             name: "Rompers",
             children: [],
           },
           {
             id: "21336",
+            isChecked: false,
             parent: "14666",
             name: "Jassen",
             children: [],
           },
           {
             id: "21338",
+            isChecked: false,
             parent: "14666",
             name: "Rokken",
             children: [],
           },
           {
             id: "21340",
+            isChecked: false,
             parent: "14666",
             name: "Jurken",
             children: [],

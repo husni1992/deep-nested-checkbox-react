@@ -1,0 +1,48 @@
+.buttonContainer {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.button {
+  margin-right: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #1976d2;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  min-width: 100px;
+}
+
+.selectAllBtn:hover {
+  text-decoration: none;
+  background-color: rgb(21, 101, 192);
+}
+
+.selectAllBtn:disabled {
+  color: rgba(0, 0, 0, 0.26);
+  background-color: rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  cursor: default;
+}
+
+.clearAllBtn {
+  border: 1px solid rgba(25, 118, 210, 0.5);
+  color: rgb(25, 118, 210);
+  background-color: transparent;
+}
+
+.clearAllBtn:hover {
+  text-decoration: none;
+  background-color: rgba(25, 118, 210, 0.04);
+  border: 1px solid rgb(25, 118, 210);
+  color: rgb(25, 118, 210);
+}
+
+.clearAllBtn:disabled {
+  color: rgba(0, 0, 0, 0.26);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  cursor: default;
+}
