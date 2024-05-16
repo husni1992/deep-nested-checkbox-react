@@ -5,6 +5,7 @@ import { checkboxTreeCategories } from "./services/api.service";
 import { CheckboxTreeV2 } from "./components-v2/CheckboxTreeV2";
 import { Category } from "./types";
 import "./page.css";
+import { SelectedCategories } from "./components-v2/SelectedCategories";
 
 const initialCategories = buildTree(checkboxTreeCategories);
 
@@ -38,7 +39,6 @@ function updateCategories(
 }
 
 function getSelectedCategories(categories: Category[]): string[] {
-  debugger;
   return categories.reduce((selected: string[], category) => {
     // Pick only categories, which does have children
     if (category.isChecked && category.children.length) {
@@ -52,18 +52,33 @@ function getSelectedCategories(categories: Category[]): string[] {
   }, []);
 }
 
-function isAllSelected(categories: Category[]): boolean {
-  return categories.every((category) => {
-    if (category.children.length > 0) {
-      return category.isChecked && isAllSelected(category.children);
+function getSelectedCount(categories: Category[]): number {
+  let count = 0;
+  categories.forEach((category) => {
+    if (category.isChecked) {
+      count++;
     }
-    return category.isChecked;
+    if (category.children.length > 0) {
+      count += getSelectedCount(category.children);
+    }
   });
+  return count;
 }
 
 export default function Home() {
-  const [categories, setCategories] = useState<Category[]>(initialCategories);
-  const allSelected = useMemo(() => isAllSelected(categories), [categories]);
+  const [categories, setCategories] = useState<Category[]>(
+    initialCategories.categories,
+  );
+
+  const totalCount = useMemo(
+    () => initialCategories.totalCount,
+    [initialCategories],
+  );
+
+  const selectedCount = useMemo(
+    () => getSelectedCount(categories),
+    [categories],
+  );
 
   const selectedCategories = useMemo(
     () => getSelectedCategories(categories),
@@ -83,16 +98,23 @@ export default function Home() {
     );
   }
 
+  const selectAllButtonEnables = selectedCount === totalCount;
+
   return (
     <div className="flex-container">
       <div className="checkbox-tree-container">
         <div className="button-container">
-          <button onClick={() => handleSelectAll(true)} disabled={allSelected}>
+          <button
+            className="select-all-btn"
+            onClick={() => handleSelectAll(true)}
+            disabled={selectAllButtonEnables}
+          >
             Select All
           </button>
           <button
+            className="clear-all-btn"
             onClick={() => handleSelectAll(false)}
-            disabled={!allSelected}
+            disabled={selectedCount === 0}
           >
             Clear All
           </button>
@@ -103,15 +125,8 @@ export default function Home() {
 
       <>
         {selectedCategories.length > 0 && (
-          <div className="selected-categories">
-            <h3>Selected Categories:</h3>
-            <div className="category-grid">
-              {selectedCategories.map((category) => (
-                <span key={category} className="category-item">
-                  {category}
-                </span>
-              ))}
-            </div>
+          <div className="selected-categories-container">
+            <SelectedCategories selectedCategories={selectedCategories} />
           </div>
         )}
       </>

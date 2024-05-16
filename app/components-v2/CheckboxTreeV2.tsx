@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Category } from "../types";
 import { Checkbox } from "./Checkbox";
 import "./CheckboxTree.css";
@@ -18,15 +18,18 @@ const TreeNode: React.FC<TreeNodeProps> = ({ item, onChange }) => {
 
   return (
     <div className="tree-node">
-      <div className="tree-node-header" onClick={handleToggle}>
+      <div className="tree-node-header">
         {hasChildren && (
-          <span className={`arrow ${isOpen ? "open" : ""}`}></span>
+          <span
+            className={`arrow ${isOpen ? "open" : ""}`}
+            onClick={handleToggle}
+          ></span>
         )}
-        
-        <Checkbox item={item} onChange={onChange} />
+
+        <Checkbox item={item} onChange={onChange} onLabelClick={handleToggle} />
       </div>
       {hasChildren && isOpen && (
-        <div className="tree-node-children">
+        <div className="tree-node-children no-children">
           <CheckboxTreeV2 data={item.children} onChange={onChange} />
         </div>
       )}

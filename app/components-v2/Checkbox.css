@@ -2,7 +2,6 @@
   display: inline-flex;
   align-items: center;
   position: relative;
-  cursor: pointer;
   user-select: none;
 }
 
@@ -59,5 +58,8 @@
   line-height: 1.8;
   font-size: 16px;
   margin-left: 10px;
+}
+
+.clickable {
   cursor: pointer;
 }

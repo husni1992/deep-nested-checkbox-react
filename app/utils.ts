@@ -1,6 +1,9 @@
 import { Category } from "./types";
 
-export function buildTree(categories: Category[]): Category[] {
+export function buildTree(categories: Category[]): {
+  totalCount: number;
+  categories: Category[];
+} {
   const tree: { [id: string]: Category } = {};
 
   // Create a dictionary with category ids as keys and initialize children array
@@ -21,11 +24,14 @@ export function buildTree(categories: Category[]): Category[] {
   });
 
   // Return root categories and categories with invalid parents
-  return categories
-    .filter((category) => {
-      return category.parent === "0" || !tree[category.parent];
-    })
-    .map((root) => {
-      return tree[root.id];
-    });
+  return {
+    categories: categories
+      .filter((category) => {
+        return category.parent === "0" || !tree[category.parent];
+      })
+      .map((root) => {
+        return tree[root.id];
+      }),
+    totalCount: Object.keys(tree).length,
+  };
 }

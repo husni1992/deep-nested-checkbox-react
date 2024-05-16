@@ -9,7 +9,15 @@
 .tree-node-header {
   display: flex;
   align-items: center;
-  cursor: pointer;
+}
+
+.tree-node-children {
+  margin-left: 30px;
+  margin-top: 5px;
+}
+
+.no-children {
+  margin-left: 45px;
 }
 
 .arrow {
@@ -19,16 +27,12 @@
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
   border-left: 5px solid #000;
-  margin-right: 10px; /* Adjust spacing between arrow and checkbox */
+  margin-right: 10px;
   transition: transform 0.2s ease-in-out;
-  vertical-align: middle; /* Ensure arrow is vertically aligned with checkbox */
+  vertical-align: middle;
+  cursor: pointer;
 }
 
 .arrow.open {
   transform: rotate(90deg);
-}
-
-.tree-node-children {
-  margin-left: 20px;
-  margin-top: 5px;
 }
