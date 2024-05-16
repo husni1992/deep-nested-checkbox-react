@@ -17,8 +17,7 @@
   position: relative;
   height: 18px;
   width: 18px;
-  background-color: #fff;
-  border: 2px solid #969494;
+  border: 1.5px solid #969494;
   transition: background-color 0.1s ease;
   cursor: pointer;
 }
@@ -45,9 +44,9 @@
   left: 5px;
   top: 1px;
   width: 5px;
-  height: 10px;
+  height: 11px;
   border: solid #1f8cbf;
-  border-width: 0 3px 3px 0;
+  border-width: 0 2.5px 2.5px 0;
   transform: rotate(45deg);
   opacity: 0;
   transition: opacity 0.1s ease;

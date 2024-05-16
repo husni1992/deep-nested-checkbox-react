@@ -1,15 +1,13 @@
-/**
- * @jest-environment jsdom
- */
-
 import mock from "./services/mock-response.json";
-import { result } from "./components/test-stub";
-import { buildTree } from "./utils";
 
-describe("Tree", () => {
-  it("should make tree by flat array", () => {
-    expect(buildTree(mock.data.categories)).toEqual(result);
+import { buildTree } from "./utils";
+import { Category } from "./types";
+import { result } from "./test-stubs/test-stub";
+
+describe("Build Tree", () => {
+  it("should make the checkbox tree from the flat array", () => {
+    expect(buildTree(mock.data.categories as Category[]).categories).toEqual(
+      result,
+    );
   });
 });
-
-export default 1;

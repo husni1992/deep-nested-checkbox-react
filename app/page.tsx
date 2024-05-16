@@ -2,10 +2,11 @@
 import { useState, useMemo } from "react";
 import { buildTree } from "./utils";
 import { checkboxTreeCategories } from "./services/api.service";
-import { CheckboxTreeV2 } from "./components-v2/CheckboxTreeV2";
+import { CheckboxTreeV2 } from "./components/CheckboxTreeV2";
 import { Category } from "./types";
 import "./page.css";
-import { SelectedCategories } from "./components-v2/SelectedCategories";
+import { SelectedCategories } from "./components/SelectedCategories";
+import classNames from "classnames";
 
 const initialCategories = buildTree(checkboxTreeCategories);
 
@@ -70,13 +71,8 @@ export default function Home() {
     initialCategories.categories,
   );
 
-  const totalCount = useMemo(
-    () => initialCategories.totalCount,
-    [initialCategories],
-  );
-
-  const selectedCount = useMemo(
-    () => getSelectedCount(categories),
+  const isAllSelected = useMemo(
+    () => getSelectedCount(categories) === initialCategories.totalCount,
     [categories],
   );
 
@@ -98,25 +94,18 @@ export default function Home() {
     );
   }
 
-  const selectAllButtonEnables = selectedCount === totalCount;
-
   return (
     <div className="flex-container">
       <div className="checkbox-tree-container">
         <div className="button-container">
           <button
-            className="select-all-btn"
-            onClick={() => handleSelectAll(true)}
-            disabled={selectAllButtonEnables}
+            className={classNames({
+              "select-all-btn": !isAllSelected,
+              "clear-all-btn": isAllSelected,
+            })}
+            onClick={() => handleSelectAll(!isAllSelected)}
           >
-            Select All
-          </button>
-          <button
-            className="clear-all-btn"
-            onClick={() => handleSelectAll(false)}
-            disabled={selectedCount === 0}
-          >
-            Clear All
+            {isAllSelected ? "Clear All" : "Select All"}
           </button>
         </div>
 

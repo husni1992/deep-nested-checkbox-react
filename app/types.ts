@@ -3,5 +3,5 @@ export interface Category {
   parent: string;
   name: string;
   children: Category[];
-  isChecked?: boolean;
+  isChecked: boolean;
 }

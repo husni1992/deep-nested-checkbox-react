@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "npm run check-types && next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "npm run check-types && next start",
     "lint": "next lint",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "check-types": "tsc --noEmit"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.4",

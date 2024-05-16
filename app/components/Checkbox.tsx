@@ -1,33 +1,34 @@
-"use client";
-
+import classNames from "classnames";
 import { Category } from "../types";
+import "./Checkbox.css";
 
-type Props = {
-  data: Category;
-  checkedItems: Record<keyof Category, any>;
-  expandedItems: Record<keyof Category, any>;
-};
+interface CheckboxProps {
+  item: Category;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onLabelClick: React.MouseEventHandler<HTMLSpanElement>;
+}
 
-export function Checkbox({ data, checkedItems, expandedItems }: Props) {
-  // const dispatch = useAppDispatch();
-
-  function isChecked(): boolean {
-    return !!checkedItems[data.id as keyof Category];
-  }
-
-  // console.log(treeData, x, y);
+export const Checkbox: React.FC<CheckboxProps> = ({
+  item,
+  onChange,
+  onLabelClick,
+}) => {
+  const checkboxBodyClassnames = classNames("checkbox__body", {
+    clickable: item.children.length > 0,
+  });
 
   return (
-    <>
+    <div className="checkbox">
       <input
         type="checkbox"
-        checked={isChecked()}
-        id={data.id}
-        value={data.id}
-        onChange={() => {}}
-        style={{ marginRight: 5 }}
+        id={item.id}
+        checked={item.isChecked || false}
+        onChange={onChange}
       />
-      <label>{data.name}</label>
-    </>
+      <label htmlFor={item.id} className="checkbox__checkmark"></label>
+      <span className={checkboxBodyClassnames} onClick={onLabelClick}>
+        {item.name}
+      </span>
+    </div>
   );
-}
+};

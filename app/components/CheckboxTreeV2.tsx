@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Category } from "../types";
 import { Checkbox } from "./Checkbox";
 import "./CheckboxTree.css";
