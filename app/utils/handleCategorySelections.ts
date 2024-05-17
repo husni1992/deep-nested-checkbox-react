@@ -1,6 +1,6 @@
 import { Category } from "../types";
 
-function updateNodeAndEveryChildren(
+function updateNodeAndNestedChildren(
   category: Category,
   isChecked: boolean,
 ): Category {
@@ -8,7 +8,7 @@ function updateNodeAndEveryChildren(
     ...category,
     isChecked,
     children: category.children.map((child) =>
-      updateNodeAndEveryChildren(child, isChecked),
+      updateNodeAndNestedChildren(child, isChecked),
     ),
   };
 }
@@ -22,7 +22,7 @@ export function updateNodeSelections(
   return categories.map((category) => {
     // If the node found, apply isChecked to parent and every children
     if (category.id === id || applyToAllNodes) {
-      return updateNodeAndEveryChildren(category, isChecked);
+      return updateNodeAndNestedChildren(category, isChecked);
     }
 
     // If not loop through it's children and try to find the node
@@ -51,6 +51,7 @@ export function getSelectedCategoryNames(categories: Category[]): string[] {
   }, []);
 }
 
+// Can use reducer here as well
 export function getCheckedNodeCount(categories: Category[]): number {
   let count = 0;
   categories.forEach((category) => {

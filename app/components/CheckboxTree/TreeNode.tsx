@@ -31,7 +31,7 @@ export const TreeNode: React.FC<TreeNodeProps> = ({ item, onChange }) => {
   const hasChildren = item.children.length > 0;
 
   const setExpandedState = () => {
-    setExpanded(!isExpanded);
+    setExpanded((prevState) => !prevState);
   };
 
   return (

@@ -2,13 +2,13 @@ import React from "react";
 import styles from "./SelectButtons.module.css";
 
 interface SelectButtonsProps {
-  handleSelectAll: (applyToAllItems: boolean) => void;
+  handleToggleAll: (isChecked: boolean) => void;
   selectedCount: number;
   totalItemCount: number;
 }
 
 const SelectButtons: React.FC<SelectButtonsProps> = ({
-  handleSelectAll,
+  handleToggleAll,
   selectedCount,
   totalItemCount,
 }) => {
@@ -16,14 +16,14 @@ const SelectButtons: React.FC<SelectButtonsProps> = ({
     <div className={styles.buttonContainer}>
       <button
         className={`${styles.button} ${styles.selectAllBtn}`}
-        onClick={() => handleSelectAll(true)}
+        onClick={() => handleToggleAll(true)}
         disabled={selectedCount === totalItemCount}
       >
         Select All
       </button>
       <button
         className={`${styles.button} ${styles.clearAllBtn}`}
-        onClick={() => handleSelectAll(false)}
+        onClick={() => handleToggleAll(false)}
         disabled={selectedCount === 0}
       >
         Clear All

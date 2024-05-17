@@ -4,7 +4,6 @@ import { Category as Node } from "../types";
 const ROOT_PARENT_ID_ZERO = "0";
 
 //TODO: Use immutable js for the dictionary
-
 export function buildCheckboxTree(originalNodes: Node[]): {
   totalNodeCount: number;
   categories: Node[];
@@ -53,7 +52,7 @@ export function buildCheckboxTree(originalNodes: Node[]): {
 
       return (
         originalNode.parent === ROOT_PARENT_ID_ZERO || // is it a node with parent as 0
-        (ALLOW_INVALID_ITEMS && !dictionaryOfNodes[originalNode.parent]) // No parent found
+        (ALLOW_INVALID_ITEMS && !dictionaryOfNodes[originalNode.parent]) // Invalid: No parent found
       );
     });
   }

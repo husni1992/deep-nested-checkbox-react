@@ -5,6 +5,7 @@
   user-select: none;
 }
 
+/* This hides original checkbox */
 .checkbox input {
   position: absolute;
   opacity: 0;

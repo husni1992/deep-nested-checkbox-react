@@ -42,14 +42,14 @@ export default function CheckboxTreePage() {
   function handleSelectionChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { id, checked } = event.target;
 
-    setTreeState((prevCategories) =>
-      updateNodeSelections(prevCategories, id, checked),
+    setTreeState((prevTreeState) =>
+      updateNodeSelections(prevTreeState, id, checked),
     );
   }
 
-  function handleSelectAll(applyToAllItems: boolean) {
-    setTreeState((prevCategories) =>
-      updateNodeSelections(prevCategories, "", applyToAllItems, true),
+  function handleToggleAll(isChecked: boolean) {
+    setTreeState((prevTreeState) =>
+      updateNodeSelections(prevTreeState, "", isChecked, true),
     );
   }
 
@@ -57,7 +57,7 @@ export default function CheckboxTreePage() {
     <div className={styles.flexContainer}>
       <div className={styles.checkboxTreeContainer}>
         <SelectButtons
-          handleSelectAll={handleSelectAll}
+          handleToggleAll={handleToggleAll}
           selectedCount={selectedNodeCount}
           totalItemCount={totalItemCount}
         />
