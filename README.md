@@ -1,6 +1,13 @@
 ## Deep Nested Checkbox Tree
 
+This is a Checkbox tree component which will populate by data of nodes.
+
+## Demo
+
+### You can check out the live demo of the project [here](https://husni1992.github.io/deep-nested-checkbox-react/).
+
 ### Checklist:
+
 - [x] Expand by clicking on a category name
 - [x] Toggle selection on click of any category
 - [x] When parent selected, select all children, do toggle for uncheck
@@ -10,11 +17,13 @@
 - [x] Make invalid checkbox grey
 
 ### Bonus
+
 - [x] Implement select all button
 - [x] Clean and concise interface with re-usable components
 - [x] Implement testing - Tested core algorithm
 
 ### Additional
+
 - [x] Select All and Clear All functionality with disabled state updates
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).

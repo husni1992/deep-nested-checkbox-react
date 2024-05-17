@@ -460,6 +460,7 @@ export const processedTree = [
   {
     id: "21252",
     isChecked: false,
+    isInvalid: true,
     parent: "14449",
     name: "Shirts",
     children: [],

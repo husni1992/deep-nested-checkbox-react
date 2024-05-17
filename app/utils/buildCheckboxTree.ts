@@ -45,21 +45,21 @@ export function buildCheckboxTree(originalNodes: Node[]): {
       !dictionaryOfNodes[node.parent]
     ) {
       // Make the node invalid if the parent does not exist in the entire tree.
-      node.isInvalid = true;
+      dictionaryOfNodes[node.id].isInvalid = true;
     }
   }
 
   // step 3
   function findRootNodesFromOriginalNodes() {
-    return originalNodes.filter((node) => {
+    return originalNodes.filter((originalNode) => {
       // Think of better way, this is a side-effect
-      checkIfInvalidAndFlag(node);
+      checkIfInvalidAndFlag(originalNode);
 
       return (
         // is it a node with parent as 0
-        node.parent === ROOT_PARENT_ID_ZERO ||
+        originalNode.parent === ROOT_PARENT_ID_ZERO ||
         // is parent does not exist in the nodes
-        (ALLOW_INVALID_ITEMS && !dictionaryOfNodes[node.parent])
+        (ALLOW_INVALID_ITEMS && !dictionaryOfNodes[originalNode.parent])
       );
     });
   }

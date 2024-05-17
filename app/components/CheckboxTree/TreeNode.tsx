@@ -5,31 +5,47 @@ import { Checkbox } from "../Checkbox/Checkbox";
 import { CheckboxTree } from "./CheckboxTree";
 import styles from "./TreeNode.module.css";
 
+interface LeftArrowIcon {
+  isExpanded: boolean;
+  setExpandedState: (
+    event: React.MouseEvent<HTMLSpanElement, MouseEvent>,
+  ) => void;
+}
+const LeftArrowIcon: React.FC<LeftArrowIcon> = ({
+  isExpanded,
+  setExpandedState,
+}) => (
+  <span className={styles.arrowContainer} onClick={setExpandedState}>
+    <span
+      className={classNames(styles.arrow, { [styles.arrowOpen]: isExpanded })}
+    />
+  </span>
+);
+
 interface TreeNodeProps {
   item: Category;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
-
 export const TreeNode: React.FC<TreeNodeProps> = ({ item, onChange }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isExpanded, setExpanded] = useState(false);
   const hasChildren = item.children.length > 0;
 
   const setExpandedState = () => {
-    setIsOpen(!isOpen);
+    setExpanded(!isExpanded);
   };
 
   return (
     <>
       <div className={styles.treeNodeHeader}>
         {hasChildren && (
-          <span
-            className={classNames(styles.arrow, { [styles.arrowOpen]: isOpen })}
-            onClick={setExpandedState}
+          <LeftArrowIcon
+            isExpanded={isExpanded}
+            setExpandedState={setExpandedState}
           />
         )}
 
         <div
-          className={classNames("test", {
+          className={classNames({
             [styles.endNode]: !hasChildren || item.isInvalid,
           })}
         >
@@ -41,7 +57,7 @@ export const TreeNode: React.FC<TreeNodeProps> = ({ item, onChange }) => {
         </div>
       </div>
 
-      {hasChildren && isOpen && (
+      {hasChildren && isExpanded && (
         <div
           className={classNames(styles.children, {
             [styles.noChildren]: !hasChildren,

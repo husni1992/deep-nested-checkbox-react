@@ -13,15 +13,15 @@ function updateNodeAndEveryChildren(
   };
 }
 
-export function updateCategories(
+export function updateNodeSelections(
   categories: Category[],
   id: string,
   isChecked: boolean,
-  applyToAllItems = false,
+  applyToAllNodes = false,
 ): Category[] {
   return categories.map((category) => {
     // If the node found, apply isChecked to parent and every children
-    if (category.id === id || applyToAllItems) {
+    if (category.id === id || applyToAllNodes) {
       return updateNodeAndEveryChildren(category, isChecked);
     }
 
@@ -29,7 +29,7 @@ export function updateCategories(
     if (category.children.length > 0) {
       return {
         ...category,
-        children: updateCategories(category.children, id, isChecked),
+        children: updateNodeSelections(category.children, id, isChecked),
       };
     }
 
@@ -39,8 +39,8 @@ export function updateCategories(
 
 export function getSelectedCategoryNames(categories: Category[]): string[] {
   return categories.reduce((selected: string[], category: Category) => {
-    // Pick only categories, which does have children
-    if (category.isChecked && category.children.length) {
+    // Pick only categories, which has children
+    if (category.isChecked && category.children.length > 0) {
       selected.push(category.name);
     }
 
@@ -57,6 +57,7 @@ export function getCheckedNodeCount(categories: Category[]): number {
     if (category.isChecked) {
       count++;
     }
+
     if (category.children.length > 0) {
       count += getCheckedNodeCount(category.children);
     }

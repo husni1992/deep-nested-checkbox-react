@@ -4,7 +4,7 @@ import { fetchCheckboxTreeCategories } from "../services/api.service";
 import { CheckboxTree } from "../components/CheckboxTree/CheckboxTree";
 import { SelectedCategories } from "../components/SelectedCategories/SelectedCategories";
 import {
-  updateCategories,
+  updateNodeSelections,
   getSelectedCategoryNames,
   getCheckedNodeCount,
 } from "../utils/handleCategorySelections";
@@ -17,12 +17,12 @@ export default function CheckboxTreePage() {
   const [treeState, setTreeState] = useState<Category[]>([]);
   const [totalItemCount, setTotalItemCount] = useState(0);
 
-  const selectedCount = useMemo(
+  const selectedNodeCount = useMemo(
     () => getCheckedNodeCount(treeState),
     [treeState],
   );
 
-  const selectedCategories = useMemo(
+  const selectedCategoriesOnly = useMemo(
     () => getSelectedCategoryNames(treeState),
     [treeState],
   );
@@ -43,13 +43,13 @@ export default function CheckboxTreePage() {
     const { id, checked } = event.target;
 
     setTreeState((prevCategories) =>
-      updateCategories(prevCategories, id, checked),
+      updateNodeSelections(prevCategories, id, checked),
     );
   }
 
   function handleSelectAll(applyToAllItems: boolean) {
     setTreeState((prevCategories) =>
-      updateCategories(prevCategories, "", applyToAllItems, true),
+      updateNodeSelections(prevCategories, "", applyToAllItems, true),
     );
   }
 
@@ -58,15 +58,15 @@ export default function CheckboxTreePage() {
       <div className={styles.checkboxTreeContainer}>
         <SelectButtons
           handleSelectAll={handleSelectAll}
-          selectedCount={selectedCount}
+          selectedCount={selectedNodeCount}
           totalItemCount={totalItemCount}
         />
         <CheckboxTree data={treeState} onChange={handleSelectionChange} />
       </div>
 
-      {selectedCategories.length > 0 && (
+      {selectedCategoriesOnly.length > 0 && (
         <div className={styles.selectedCategoriesContainer}>
-          <SelectedCategories selectedCategories={selectedCategories} />
+          <SelectedCategories selectedCategories={selectedCategoriesOnly} />
         </div>
       )}
     </div>
