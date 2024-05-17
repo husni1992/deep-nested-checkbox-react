@@ -11,6 +11,17 @@ export function buildCheckboxTree(originalNodes: Node[]): {
 } {
   const dictionaryOfNodes: { [id: string]: Node } = {};
 
+  // Return root categories and categories with invalid parents
+  function checkIfInvalidAndFlagInDictionary(originalNode: Node) {
+    if (
+      originalNode.parent !== ROOT_PARENT_ID_ZERO &&
+      !dictionaryOfNodes[originalNode.parent]
+    ) {
+      // Make the dictionary node invalid if the parent does not exist in the entire tree.
+      dictionaryOfNodes[originalNode.id].isInvalid = true;
+    }
+  }
+
   // step 1
   function populateNodesInDictionary() {
     // For each node, populate an item in the dictionary with node id as key and entire node as value, add new property "isChecked:false" and empty children array "children: []""
@@ -26,40 +37,23 @@ export function buildCheckboxTree(originalNodes: Node[]): {
   // step 2
   function pushNodeToItsParentInDictionary() {
     // Loop through all nodes Populate children arrays
-    originalNodes.forEach((node) => {
-      const parentNode = dictionaryOfNodes[node.parent];
-      if (!parentNode) return;
+    originalNodes.forEach((originalNode) => {
+      const parentNodeInDictionary = dictionaryOfNodes[originalNode.parent];
+      if (!parentNodeInDictionary) return;
 
-      if (!parentNode.children) {
-        parentNode.children = [];
-      }
-
-      parentNode.children.push(dictionaryOfNodes[node.id]);
+      parentNodeInDictionary.children.push(dictionaryOfNodes[originalNode.id]);
     });
-  }
-
-  // Return root categories and categories with invalid parents
-  function checkIfInvalidAndFlag(node: Node) {
-    if (
-      node.parent !== ROOT_PARENT_ID_ZERO &&
-      !dictionaryOfNodes[node.parent]
-    ) {
-      // Make the node invalid if the parent does not exist in the entire tree.
-      dictionaryOfNodes[node.id].isInvalid = true;
-    }
   }
 
   // step 3
   function findRootNodesFromOriginalNodes() {
     return originalNodes.filter((originalNode) => {
-      // Think of better way, this is a side-effect
-      checkIfInvalidAndFlag(originalNode);
+      // TODO: Think of better way, this is a side-effect
+      checkIfInvalidAndFlagInDictionary(originalNode);
 
       return (
-        // is it a node with parent as 0
-        originalNode.parent === ROOT_PARENT_ID_ZERO ||
-        // is parent does not exist in the nodes
-        (ALLOW_INVALID_ITEMS && !dictionaryOfNodes[originalNode.parent])
+        originalNode.parent === ROOT_PARENT_ID_ZERO || // is it a node with parent as 0
+        (ALLOW_INVALID_ITEMS && !dictionaryOfNodes[originalNode.parent]) // No parent found
       );
     });
   }

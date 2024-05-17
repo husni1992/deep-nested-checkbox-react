@@ -2,6 +2,10 @@
 
 This is a Checkbox tree component which will populate by data of nodes.
 
+### Invalid nodes
+
+There can be nodes whose parent is not available. These are considered invalid nodes. By default, you will see the invalid node, but you cannot interact and it's disabled. If you want to hide them, you can configure this setting. Go to `app/config.ts` and turn off `ALLOW_INVALID_ITEMS`.
+
 ## Demo
 
 ### You can check out the live demo of the project [here](https://husni1992.github.io/deep-nested-checkbox-react/).
